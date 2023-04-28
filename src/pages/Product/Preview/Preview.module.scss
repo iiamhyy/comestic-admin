@@ -1,0 +1,64 @@
+.preview {
+    margin: 15px 0 15px 15px;
+    height: 95%;
+    overflow: auto;
+    padding-right: 20px;
+    div, input, label {
+
+              font-family: "Candara";
+    }
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 5px;
+    }
+    .btn-edit {
+        height: 45px;
+        padding: 0 10px;
+        width: 100px;
+        border: 2px solid #000;
+        background: transparent;
+        color: #000;
+        cursor: pointer;
+        &:hover {
+            background: #000;
+            color: #fff;
+        }
+    }
+    .container {
+        margin-top: 20px;
+        label {
+            margin: auto auto;
+        }
+        .input-field {
+            border-bottom: 1px solid #ccc;
+            background: transparent;
+            border-radius: 0;
+        }
+        .image {
+            img {
+                max-width: 200px;
+            }
+        }
+        .color {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+    }
+    .btn-group {
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+}

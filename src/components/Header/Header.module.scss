@@ -1,0 +1,20 @@
+.wrapper {
+          height: var(--header-width);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          margin: 0 20px;
+          h2 {
+                    font-size: 20px;
+          }
+          .action {
+                    display: flex;
+                    gap: 10px;
+                    .notification {
+                              display: flex;
+                              align-items: center;
+                    }
+          }
+
+}

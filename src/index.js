@@ -2,13 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import './App.css'
 import reportWebVitals from './reportWebVitals';
+import GlobalStyles from './assets/styles/GlobalStyles';
+import './assets/fonts/Candara/Candara.ttf'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  <GlobalStyles>
     <App />
-  </React.StrictMode>
+  </GlobalStyles>
 );
 
 // If you want to start measuring performance in your app, pass a function

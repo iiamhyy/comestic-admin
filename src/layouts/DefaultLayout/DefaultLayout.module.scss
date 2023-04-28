@@ -1,0 +1,16 @@
+.wrapper {
+          display: flex;
+          
+}
+
+.inner-about {
+          display: flex;
+          flex-direction: column;
+          flex: 1;
+          width: 100%;
+          z-index: 1;
+          .container {
+                    
+                    margin: 0 20px;
+          }
+}

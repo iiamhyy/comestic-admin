@@ -1,0 +1,64 @@
+:root {
+    --primary: #cb8161;
+    --header-width: 70px;
+}
+
+* {
+    margin: 0;
+}
+
+body {
+    font-family: "Candara";
+    overflow: hidden;
+    width: 100vw;
+}
+
+.ant-table {
+    table,
+    th,
+    td,
+    tr {
+        font-size: 1rem;
+        font-family: "Candara";
+    }
+}
+
+.ant-menu {
+    background: transparent;
+    font-family: "Candara";
+    font-size: 1.1rem;
+    color: #63483c;
+    margin-right: 0;
+}
+
+.ant-menu-item-active {
+    background: rgba(0, 0, 0, 0.2) !important;
+}
+.ant-menu-item {
+    background: transparent;
+    margin-right: 10px !important;
+}
+
+.ant-menu-item-selected {
+    background: rgba(0, 0, 0, 0.2) !important;
+}
+:where(.css-dev-only-do-not-override-1fviqcj).ant-menu-light
+    .ant-menu-item-selected,
+:where(.css-dev-only-do-not-override-1fviqcj).ant-menu-light
+    > .ant-menu
+    .ant-menu-item-selected {
+    color: #402b21;
+}
+
+:where(
+        .css-dev-only-do-not-override-1fviqcj
+    ).ant-menu-light.ant-menu-root.ant-menu-inline,
+:where(.css-dev-only-do-not-override-1fviqcj).ant-menu-light
+    > .ant-menu.ant-menu-root.ant-menu-inline,
+:where(
+        .css-dev-only-do-not-override-1fviqcj
+    ).ant-menu-light.ant-menu-root.ant-menu-vertical,
+:where(.css-dev-only-do-not-override-1fviqcj).ant-menu-light
+    > .ant-menu.ant-menu-root.ant-menu-vertical {
+    border-inline-end: 0;
+}

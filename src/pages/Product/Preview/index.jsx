@@ -5,7 +5,7 @@ import { UploadOutlined } from "@ant-design/icons";
 import { NumericFormat } from "react-number-format";
 import { useState, useEffect } from "react";
 import supabase from "../../../services/supabase";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setProduct } from "../../../Store/Slice/product.slice";
 import { fetchProductData } from "../../../services/supabase/resources/product.service";
@@ -32,6 +32,7 @@ function Preview() {
     const setIsEdit = () => setIsPreview((isPreview) => !isPreview);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const fileList = product.images?.map((img, index) => ({
         uid: index,
         name: index + ".png",
@@ -301,7 +302,7 @@ function Preview() {
                     >
                         Save
                     </button>
-                    <button className={cx("btn-edit")}>Delete</button>
+                    <button className={cx("btn-edit")} onClick={() => navigate("/product")}>Cancel</button>
                 </div>
             )}
         </div>

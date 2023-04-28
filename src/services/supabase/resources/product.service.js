@@ -9,5 +9,4 @@ export const fetchProductData = async () => {
         return [];
     }
 
-    console.log(data);
 };

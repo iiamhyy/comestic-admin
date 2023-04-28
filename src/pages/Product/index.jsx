@@ -1,12 +1,13 @@
 import classNames from "classnames/bind";
 import styles from "./Product.module.scss";
-import { Table, Tooltip } from "antd";
+import { Table, Tooltip, Modal, Button } from "antd";
 import {
     DeleteOutlined,
     EyeOutlined,
+    ExclamationCircleOutlined,
 } from "@ant-design/icons/lib/icons";
 import supabase from "../../services/supabase";
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect } from "react";
 import AddProduct from "./AddProduct";
 import { Link } from "react-router-dom";
 
@@ -74,6 +75,15 @@ function Product() {
     const [id, setId] = useState();
     const [fetchError, setFetchError] = useState();
     const [products, setProducts] = useState([]);
+    const [confirmDelete, setConfirmDelete] = useState(false);
+    const [confirmLoading, setConfirmLoading] = useState(false);
+    const [confirmMessages, setConfirmMessages] = useState("Are you sure?");
+    const showConfirmDelete = () => {
+        setConfirmDelete(true);
+    };
+    const hideConfirmDelete = () => {
+        setConfirmDelete(false);
+    };
 
     const [isAddProductOpen, setIsAddProductOpen] = useState(false);
 
@@ -90,17 +100,6 @@ function Product() {
         setId(Math.max(...ids));
     }, [products]);
 
-    
-    // const fetchData = useCallback(async () => {
-    //     const products = await fetchProductData();
-    //     setProducts(products)
-    // }, []);
-
-    // useEffect(() => {
-    //     fetchData();
-    // }, [fetchData])
-
-
     useEffect(() => {
         const fetchProductData = async () => {
             const { data, error } = await supabase.from("product").select();
@@ -113,7 +112,14 @@ function Product() {
             }
         };
         fetchProductData();
-    }, []);
+    }, [products]);
+
+    // const handelDeleteProduct = async () => {
+    //     const { data } = await supabase
+    //         .from("product")
+    //         .delete()
+    //         .eq("id", product.id);
+    // };
 
     const data = products?.map((product) => ({
         key: product.id,
@@ -152,32 +158,51 @@ function Product() {
                     <Link
                         to={`/product-preview/${product.id}/${product.name}`}
                         state={product}
-                        // isPreviewOpen={isPreviewOpen}
-                        // handelPreviewClose={handelPreviewClose}
                     >
-                        {/* <Preview productID={product.id}/> */}
                         <div className={cx("action")}>
                             <EyeOutlined />
                         </div>
                     </Link>
                 </Tooltip>
                 <Tooltip title="Delete">
-                    <div className={cx("action")}>
+                    <div className={cx("action")} onClick={showConfirmDelete}>
                         <DeleteOutlined />
                     </div>
                 </Tooltip>
+                <Modal
+                    title="Confirm"
+                    open={confirmDelete}
+                    onOk={async () => {
+                        const { data } = await supabase
+                            .from("product")
+                            .delete()
+                            .eq("id", product.id);
+                        setConfirmLoading(true);
+                        if (data) {
+
+                            setConfirmMessages("Delete failed!")
+                            setTimeout(() => {
+                                setConfirmLoading(false);
+                                setConfirmDelete(false);
+                            }, 2000);
+                            
+                        }else{
+                            setConfirmMessages("Successfully deleted!")
+                            setTimeout(() => {
+                                
+                                setConfirmLoading(false);
+                                setConfirmDelete(false);
+                            }, 2000);
+                        }
+                    }}
+                    onCancel={hideConfirmDelete}
+                    confirmLoading={confirmLoading}
+                    okText="Yes"
+                    cancelText="No"
+                >
+                    <p>{confirmMessages}</p>
+                </Modal>
             </div>,
-            // <div>
-            //     <Dropdown
-            //         key={product.id}
-            //         trigger={["click"]}
-            //         onClick={() => setProduct(product)}
-            //         menu={{ items }}
-            //         placement="bottom"
-            //     >
-            //         <EllipsisOutlined style={{ fontSize: "18px" }} />
-            //     </Dropdown>
-            // </div>,
         ],
     }));
 
@@ -187,6 +212,7 @@ function Product() {
                 <button className={cx("add-product")} onClick={showAddProduct}>
                     ADD NEW PRODUCT
                 </button>
+
                 <AddProduct
                     isAddProductOpen={isAddProductOpen}
                     handelAddProductClose={handelAddProductClose}

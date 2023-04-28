@@ -9,6 +9,9 @@ import {
     RightOutlined,
     MailOutlined,
     MenuUnfoldOutlined,
+    CopyOutlined,
+    GifOutlined,
+    GiftOutlined,
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { Button, Menu } from "antd";
@@ -25,9 +28,11 @@ function getItem(label, key, icon, children, type) {
     };
 }
 const items = [
-    getItem(<Link to="/"><p><b>Dashboard</b></p></Link>, "home", <MailOutlined style={{fontSize: '18px'}} />),
-    getItem(<Link to="/product"><p><b>Product</b></p></Link>, "product", <AppstoreOutlined style={{fontSize: '18px'}} />),
-    getItem(<Link to="/order"><p><b>Order</b></p></Link>, "order", <AppstoreOutlined style={{fontSize: '18px'}} />),
+    getItem(<Link to="/"><p><b>Dashboard</b></p></Link>, "home", <AppstoreOutlined style={{fontSize: '18px'}} />),
+    { type: 'divider' },
+    getItem(<Link to="/product"><p><b>Product</b></p></Link>, "product", <GiftOutlined style={{fontSize: '18px'}} />),
+    { type: 'divider' },
+    getItem(<Link to="/order"><p><b>Order</b></p></Link>, "order", <CopyOutlined style={{fontSize: '18px'}} />),
     
 ];
 

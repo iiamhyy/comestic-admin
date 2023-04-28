@@ -1,6 +1,6 @@
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
-import { BellOutlined, MessageOutlined } from "@ant-design/icons";
+import { BellOutlined, CalendarOutlined, MessageOutlined } from "@ant-design/icons";
 import { Badge, Avatar } from "antd";
 
 const cx = classNames.bind(styles);
@@ -17,12 +17,12 @@ function Header() {
                 </div>
                 <div className={cx("notification")}>
                     <Badge dot={true} size="small">
-                        <MessageOutlined style={{fontSize: '20px'}} />
+                        <MessageOutlined style={{fontSize: '18px'}} />
                     </Badge>
                 </div>
                 <div className={cx("notification")}>
                     <Badge dot={true} size="small">
-                        <BellOutlined style={{fontSize: '20px'}}/>
+                        <CalendarOutlined style={{fontSize: '20px'}}/>
                     </Badge>
                 </div>
                 <Avatar>U</Avatar>
